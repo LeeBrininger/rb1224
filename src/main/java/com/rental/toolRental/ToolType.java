@@ -2,6 +2,14 @@ package com.rental.toolRental;
 
 public class ToolType {
 	
+	/**
+	 * Constructor for the Tool Type class
+	 * @param name Name of the type of tool.
+	 * @param charge How much it costs to rent the tool per day.
+	 * @param weekdayCharge If the tool is charged on weekdays.
+	 * @param weekendCharge If the tool is charged on weekends.
+	 * @param holidayCharge If the tool is charged on holidays.
+	 */
 	public ToolType(String name, double charge, boolean weekdayCharge, boolean weekendCharge, boolean holidayCharge) {
 		super();
 		this.name = name;
@@ -11,18 +19,8 @@ public class ToolType {
 		this.holidayCharge = holidayCharge;
 	}
 
-	@Override
-	public String toString() {
-		return "ToolType [name=" + name + ", charge=" + charge + ", weekdayCharge=" + weekdayCharge + ", weekendCharge="
-				+ weekendCharge + ", holidayCharge=" + holidayCharge + "]";
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public double getCharge() {

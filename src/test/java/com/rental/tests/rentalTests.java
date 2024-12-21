@@ -14,17 +14,17 @@ import com.rental.toolRental.ToolRental;
 public class rentalTests {
 
 	private static DateTimeFormatter pattern = DateTimeFormatter.ofPattern("M/d/yy");
-
+	
 	@Test
 	void testOne() {
 		Throwable exception = assertThrows(IllegalArgumentException.class, ()->
-			ToolRental.checkout("JAKR", 5, "2015-09-03", 101));
+			ToolRental.checkout("JAKR", 5, "9/3/15", 101));
 		assertEquals("Please enter a percent discount between 0 and 100", exception.getMessage());
 	}
 
 	@Test
 	void testTwo() {
-		RentalAgreement contract = ToolRental.checkout("LAWD", 3, "2020-07-02", 10);
+		RentalAgreement contract = ToolRental.checkout("LAWD", 3, "7/2/20", 10);
 		assertAll("Rental Test 2",
 			() -> assertEquals(contract.getTool().getCode(), "LAWD"),
 			() -> assertEquals(contract.getTool().getType().getName(), "Ladder"),
@@ -43,7 +43,7 @@ public class rentalTests {
 	
 	@Test
 	void testThree() {
-		RentalAgreement contract = ToolRental.checkout("CHNS", 5, "2015-07-02", 25);
+		RentalAgreement contract = ToolRental.checkout("CHNS", 5, "7/2/15", 25);
 		assertAll("Rental Test 3",
 			() -> assertEquals(contract.getTool().getCode(), "CHNS"),
 			() -> assertEquals(contract.getTool().getType().getName(), "Chainsaw"),
@@ -62,7 +62,7 @@ public class rentalTests {
 	
 	@Test
 	void testFour() {
-		RentalAgreement contract = ToolRental.checkout("JAKD", 6, "2015-09-03", 0);
+		RentalAgreement contract = ToolRental.checkout("JAKD", 6, "9/3/15", 0);
 		assertAll("Rental Test 4",
 			() -> assertEquals(contract.getTool().getCode(), "JAKD"),
 			() -> assertEquals(contract.getTool().getType().getName(), "Jackhammer"),
@@ -81,7 +81,7 @@ public class rentalTests {
 	
 	@Test
 	void testFive() {
-		RentalAgreement contract = ToolRental.checkout("JAKR", 9, "2015-07-02", 0);
+		RentalAgreement contract = ToolRental.checkout("JAKR", 9, "7/2/15", 0);
 		assertAll("Rental Test 5",
 			() -> assertEquals(contract.getTool().getCode(), "JAKR"),
 			() -> assertEquals(contract.getTool().getType().getName(), "Jackhammer"),
@@ -100,7 +100,7 @@ public class rentalTests {
 	
 	@Test
 	void testSix() {
-		RentalAgreement contract = ToolRental.checkout("JAKR", 3, "2020-07-02", 10);
+		RentalAgreement contract = ToolRental.checkout("JAKR", 3, "7/2/20", 10);
 		assertAll("Rental Test 6",
 			() -> assertEquals(contract.getTool().getCode(), "JAKR"),
 			() -> assertEquals(contract.getTool().getType().getName(), "Jackhammer"),

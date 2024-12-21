@@ -2,16 +2,17 @@ package com.rental.toolRental;
 
 public class Tool {
 	
+	/**
+	 * Constructor for the Tool class.
+	 * @param code Unique identifier for the tool.
+	 * @param type What type of tool it is, this is a ToolType object.
+	 * @param brand What brand the tool is.
+	 */
 	public Tool(String code, ToolType type, String brand) {
 		super();
 		this.code = code;
 		this.type = type;
 		this.brand = brand;
-	}
-
-	@Override
-	public String toString() {
-		return "Tool [code=" + code + ", type=" + type.toString() + ", brand=" + brand + "]";
 	}
 
 	public String getCode() {
@@ -37,8 +38,6 @@ public class Tool {
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-
-
 
 	private String code;
 	
