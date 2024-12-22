@@ -66,6 +66,25 @@ public class RentalAgreement {
 	}
 
 	/**
+	 * This method prints out the formatted rental form.
+	 */
+	public String printForm() {
+		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MM/dd/yy");
+		return "Tool code: " + tool.getCode() + "\n" +
+				"Tool type: " + tool.getType().getName() + "\n" +
+				"Tool brand: " + tool.getBrand() + "\n" +
+				"Rental days: " + rentalDays + "\n" +
+				"Check out date: " + checkOutDate.format(pattern) + "\n" +
+				"Due Date: " + dueDate.format(pattern) + "\n" +
+				"Daily Rental Charge: $" + df.format(tool.getType().getCharge()) + "\n" +
+				"Charge Days: " + chargeDays + "\n" +
+				"Pre-Discount Charge: $" + df.format(preDiscountCharge) + "\n" +
+				"Discount Percent: " + discount + "%\n" +
+				"Discount Amount: $" + df.format(discountAmount) + "\n" +
+				"Final Charge: $" + df.format(finalCharge) + " ";
+	}
+	
+	/**
 	 * This method calculates the charge and date info based on the info passed
 	 * in via the constructor. It calculates the due date, how many days are
 	 * chargeable, the discount amount, and the final charge amount.
@@ -164,25 +183,6 @@ public class RentalAgreement {
 		}
 		
 		return false;
-	}
-	
-	/**
-	 * This method prints out the formatted rental form.
-	 */
-	public String printForm() {
-		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MM/dd/yy");
-		return "Tool code: " + tool.getCode() + "\n" +
-				"Tool type: " + tool.getType().getName() + "\n" +
-				"Tool brand: " + tool.getBrand() + "\n" +
-				"Rental days: " + rentalDays + "\n" +
-				"Check out date: " + checkOutDate.format(pattern) + "\n" +
-				"Due Date: " + dueDate.format(pattern) + "\n" +
-				"Daily Rental Charge: $" + df.format(tool.getType().getCharge()) + "\n" +
-				"Charge Days: " + chargeDays + "\n" +
-				"Pre-Discount Charge: $" + df.format(preDiscountCharge) + "\n" +
-				"Discount Percent: " + discount + "%\n" +
-				"Discount Amount: $" + df.format(discountAmount) + "\n" +
-				"Final Charge: $" + df.format(finalCharge) + " ";
 	}
 	
 	// Class Variable Definitions
