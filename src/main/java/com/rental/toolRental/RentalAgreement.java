@@ -69,6 +69,7 @@ public class RentalAgreement {
 	 * This method prints out the formatted rental form.
 	 */
 	public String printForm() {
+		
 		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MM/dd/yy");
 		return "Tool code: " + tool.getCode() + "\n" +
 				"Tool type: " + tool.getType().getName() + "\n" +
@@ -91,11 +92,13 @@ public class RentalAgreement {
 	 */
 	private void calculateCharges() {
 		
+		// Calculate due date
 		dueDate = checkOutDate.plusDays(rentalDays);
 		
 		// Calculate chargeable days
 		getValidDays();
 		
+		// Calculate pre-discount charge
 		preDiscountCharge = tool.getType().getCharge() * chargeDays;
 		
 		// Calculate the discount amount, rounding to nearest cent
@@ -115,6 +118,7 @@ public class RentalAgreement {
 	 * and weekends.
 	 */
 	private void getValidDays() {
+		
 		DayOfWeek dayOfWeek = null;
 		LocalDate checkDay = null;
 		

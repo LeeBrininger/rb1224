@@ -30,9 +30,9 @@ public class rentalTests {
 	 */
 	@Test
 	void testTwo() {
-		RentalAgreement contract = ToolRental.checkout("LAWD", 3, "7/2/20", 10);
+		RentalAgreement contract = ToolRental.checkout("LADW", 3, "7/2/20", 10);
 		assertAll("Rental Test 2",
-			() -> assertEquals(contract.getTool().getCode(), "LAWD"),
+			() -> assertEquals(contract.getTool().getCode(), "LADW"),
 			() -> assertEquals(contract.getTool().getType().getName(), "Ladder"),
 			() -> assertEquals(contract.getTool().getBrand(), "Werner"),
 			() -> assertEquals(contract.getRentalDays(), 3),
@@ -145,7 +145,9 @@ public class rentalTests {
 		assertEquals("Please enter a rental time of at least one day", exception.getMessage());
 	}
 	
-	
+	/**
+	 * Additional test, checks that negative rental days returns an exception
+	 */
 	@Test
 	void testEight() {
 		Throwable exception = assertThrows(IllegalArgumentException.class, ()->
@@ -153,11 +155,14 @@ public class rentalTests {
 		assertEquals("Please enter a rental time of at least one day", exception.getMessage());
 	}
 	
+	/**
+	 * Additional test, testing date with two digit month and day
+	 */
 	@Test
 	void testNine() {
-		RentalAgreement contract = ToolRental.checkout("LAWD", 3, "12/12/12", 10);
-		assertAll("Testing date with to digit month and day",
-			() -> assertEquals(contract.getTool().getCode(), "LAWD"),
+		RentalAgreement contract = ToolRental.checkout("LADW", 3, "12/12/12", 10);
+		assertAll("Testing date with two digit month and day",
+			() -> assertEquals(contract.getTool().getCode(), "LADW"),
 			() -> assertEquals(contract.getTool().getType().getName(), "Ladder"),
 			() -> assertEquals(contract.getTool().getBrand(), "Werner"),
 			() -> assertEquals(contract.getRentalDays(), 3),
@@ -173,10 +178,32 @@ public class rentalTests {
 	}
 	
 	/**
-	 * Additional test, checks that a non-real date for rental returns an exception
+	 * Additional test, testing date that rolls over into new month
 	 */
 	@Test
 	void testTen() {
+		RentalAgreement contract = ToolRental.checkout("CHNS", 10, "9/29/12", 10);
+		assertAll("Testing date with two digit month and day",
+			() -> assertEquals(contract.getTool().getCode(), "CHNS"),
+			() -> assertEquals(contract.getTool().getType().getName(), "Chainsaw"),
+			() -> assertEquals(contract.getTool().getBrand(), "Stihl"),
+			() -> assertEquals(contract.getRentalDays(), 10),
+			() -> assertEquals(contract.getCheckOutDate().format(pattern), "9/29/12"),
+			() -> assertEquals(contract.getDueDate().format(pattern), "10/9/12"),
+			() -> assertEquals(contract.getTool().getType().getCharge(), 1.49, 0.01),
+			() -> assertEquals(contract.getChargeDays(), 7),
+			() -> assertEquals(contract.getPreDiscountCharge(), 10.43, 0.01),
+			() -> assertEquals(contract.getDiscount(), 10),
+			() -> assertEquals(contract.getdiscountAmount(), 1.04, 0.01),
+			() -> assertEquals(contract.getFinalCharge(), 9.39, 0.01)
+		);
+	}
+	
+	/**
+	 * Additional test, checks that a non-real date for rental returns an exception
+	 */
+	@Test
+	void testEleven() {
 		Throwable exception = assertThrows(IllegalArgumentException.class, ()->
 			ToolRental.checkout("JAKR", 4, "14/3/15", 56));
 		assertEquals("Please enter a valid date in the format mm/dd/yy", exception.getMessage());
@@ -186,7 +213,7 @@ public class rentalTests {
 	 * Additional test, checks that differently formatted date for rental returns an exception
 	 */
 	@Test
-	void testEleven() {
+	void testTwelve() {
 		Throwable exception = assertThrows(IllegalArgumentException.class, ()->
 			ToolRental.checkout("JAKR", 4, "2025-12-21", 56));
 		assertEquals("Please enter a valid date in the format mm/dd/yy", exception.getMessage());

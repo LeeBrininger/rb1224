@@ -13,7 +13,7 @@ public class ToolRental {
 	public static void main(String[] args) {
 		
 		// Two example rentals with contracts printed out
-		RentalAgreement contract = checkout("LAWD", 3, "12/12/12", 10);
+		RentalAgreement contract = checkout("CHNS", 10, "9/29/12", 10);
 		System.out.println(contract.printForm() + "\n");
 		
 		contract = checkout("JAKR", 4, "7/2/20", 50);
@@ -33,8 +33,6 @@ public class ToolRental {
 		ArrayList<Tool> toolRepo = getToolRepo();
 		RentalAgreement contract = null;
 		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("M/d/yy");
-		
-		DateTimeFormatter pattern2 = DateTimeFormatter.ofPattern("yyyy/d/M");
 		
 		if(dayCount < 1) {
 			throw new IllegalArgumentException("Please enter a rental time of at least one day");
@@ -74,7 +72,7 @@ public class ToolRental {
 		// EXAMPLE: String query = "SELECT * FROM Tools";
 		ArrayList<Tool> toolRepo = new ArrayList<>();
 		toolRepo.add(new Tool("CHNS", chainsaw, "Stihl"));
-		toolRepo.add(new Tool("LAWD", ladder, "Werner"));
+		toolRepo.add(new Tool("LADW", ladder, "Werner"));
 		toolRepo.add(new Tool("JAKD", jackhammer, "DeWalt"));
 		toolRepo.add(new Tool("JAKR", jackhammer, "Ridgid"));
 		
